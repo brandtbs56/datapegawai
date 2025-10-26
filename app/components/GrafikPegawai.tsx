@@ -46,6 +46,8 @@ export default function GrafikPegawai() {
       .catch(console.error);
   }, [selectedJenisAsn]);
 
+  const totalPegawai = dataGender.reduce((sum, item) => sum + item.jumlah, 0);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-6">
       {/* Grafik 1: Berdasarkan Jenis ASN */}
@@ -96,7 +98,9 @@ export default function GrafikPegawai() {
           </button>
         ))}
       </div>
-      
+        <p className="text-center text-gray-700 font-semibold mb-2">
+          Total: {totalPegawai.toLocaleString("id-ID")} Pegawai
+        </p>
         {dataGender.length > 0 ? (
           <ResponsiveContainer width="100%" height={350}>
             <PieChart>
